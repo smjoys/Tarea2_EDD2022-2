@@ -115,12 +115,32 @@ import java.util.*;
         /////////////////////////////////////////////////////////////////5)Delete
 
 
-        public void Delete(String path){
-            Delete(buscaNodo(path));
+
+
+        public void Delete(String elPath) {
+            if(root==null){
+                System.out.println("El arbol esta vacio");
+            }else{
+                NodoArbol nodo=buscaNodo(elPath);
+                if(nodo==null){
+                    System.out.println("Error");
+                }else{
+                    Borrar(nodo);
+                }
+            }
         }
 
+        private void Borrar(NodoArbol nodo){
+            NodoArbol auxIzq= nodo.hijo;
+            NodoArbol auxDer=nodo.hermano;
 
-        private void Delete(NodoArbol aux){
+            if(auxDer==null && auxIzq==null){
+                if(root==nodo){
+                    root=null;
+                }else{
+
+                }
+            }
 
         }
 
