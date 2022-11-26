@@ -13,11 +13,6 @@ import java.util.*;
         }
 
 
-
-
-
-
-
         ///////////////////////////////////////////////////////////// 1) Calcular Altura
 
         public int CalcularAltura(){
@@ -29,13 +24,16 @@ import java.util.*;
         }
 
 
-            public int CalcularAltura(NodoArbol nodo){
-                if(nodo !=null){
-                    return Math.max(CalcularAltura(nodo.hijo), CalcularAltura(nodo.hermano));
-                }
-                return 0;
+            public int  CalcularAltura(NodoArbol n) {
+            int hi = -1, hd = -1;
+            if (n.hijo != null) {
+                hi = CalcularAltura(n.hijo);
             }
-
+            if (n.hermano != null) {
+                hd = CalcularAltura(n.hermano) - 1;
+            }
+            return 1 + Math.max(hi, hd);
+        }
 
 
 
@@ -149,9 +147,24 @@ import java.util.*;
 
 
         //////////////////////////////////////////////////////////////////6) PreOrdenInterativo
-
         public void PreOrdenIterativo(){
+            if(root == null){
+                return;
+            }
+            Stack<NodoArbol> pila = new Stack<NodoArbol>();
+            pila.push(root);
+            NodoArbol s = root;
+            while (!pila.empty()){
+                if (s != null) {
 
+                    if (s.hermano != null) {
+                        pila.push(s.hermano);
+                    }
+                    s = s.hijo;
+                }else {
+                    s= pila.pop();
+                }
+            }
         }
 
         /////////////////////////////////////////////////////////////////7) Por Nivel
