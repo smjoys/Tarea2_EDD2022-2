@@ -28,29 +28,16 @@ import java.util.*;
             }
         }
 
-        private int CalcularAltura(NodoArbol nodo) {
 
-            int der=1,izq=1;
-            if (nodo == null) {
+            public int CalcularAltura(NodoArbol nodo){
+                if(nodo !=null){
+                    return Math.max(CalcularAltura(nodo.hijo), CalcularAltura(nodo.hermano));
+                }
                 return 0;
-            }else{
-
-                if(nodo.hijo!=null){
-                    izq+=CalcularAltura(nodo.hijo);
-                }
-
-                if(nodo.hermano!=null){
-                    der+=CalcularAltura(nodo.hermano);
-                }
-
-                if(izq>der){
-                    return izq;
-                }else{
-                    return der;
-                }
-
             }
-        }
+
+
+
 
 
 
@@ -74,7 +61,27 @@ import java.util.*;
         ///////////////////////////////////////////////////////////////// 3)String Path
 
 
+        public String Path(String nombre){
+            return BuscarNodo2(nombre,root);
 
+        }
+
+        private String BuscarNodo2(String nombre, NodoArbol nodo){
+            String s=nodo.nombre+"/";
+            if(nodo.nombre.equalsIgnoreCase(nombre)) {
+                return s += nodo.nombre;
+            }
+
+                if (nodo.hijo != null) {
+                     s+=BuscarNodo2(nombre, nodo.hijo) ;
+                }
+
+                if (nodo.hermano != null) {
+                    s+=BuscarNodo2(nombre, nodo.hermano);
+                }
+
+                return s;
+        }
 
 
 
@@ -127,6 +134,16 @@ import java.util.*;
 
         }
 
+        /////////////////////////////////////////////////////////////////7) Por Nivel
+
+        public void PorNivel(){
+            Fila f= new Fila();
+
+
+
+        }
+
+
 
 
 
@@ -166,8 +183,17 @@ import java.util.*;
         }
 
 
+        int Size() {
+            return size(root);
+        }
 
-
+        private int size(NodoArbol n){
+            if (n ==null){
+                return 0;
+            } else{
+                return 1 + (size(n.hijo) + size(n.hermano));
+            }
+        }
 
 
 

@@ -22,7 +22,7 @@ public class Main {
 
         System.out.println("La altura del arbol es: " +arbol.CalcularAltura());
         System.out.println("El peso del arbol es: " + arbol.Peso());
-
+        System.out.println(arbol.Path("m"));
 
     }
 }
